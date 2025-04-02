@@ -16,7 +16,6 @@ body {
   position: relative;
 }
 
-/* 배경에 흐릿한 AI 느낌의 원 패턴 추가 */
 body::before {
   content: '';
   position: absolute;
@@ -28,7 +27,6 @@ body::before {
   z-index: -1;
 }
 
-/* 헤더 스타일 */
 header {
   width: 100%;
   padding: 1rem 2vw;
@@ -73,10 +71,9 @@ header {
   color: #ffffff;
   border-color: #78B3FF;
   transform: translateY(-2px);
-  animation: pulse 0.5s infinite; /* 펄스 애니메이션 추가 */
+  animation: pulse 0.5s infinite; 
 }
 
-/* 메인 컨텐츠 */
 main {
   width: 100%;
   display: flex;
@@ -93,9 +90,9 @@ main {
   overflow: hidden;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
   background: #ffffff;
-  transition: box-shadow 0.3s ease, opacity 0.5s ease; /* 페이드 인을 위한 트랜지션 */
-  opacity: 0; /* 처음엔 투명 */
-  animation: fadeIn 1s forwards; /* 로드 시 페이드 인 */
+  transition: box-shadow 0.3s ease, opacity 0.5s ease; 
+  opacity: 0; 
+  animation: fadeIn 1s forwards; 
 }
 
 .canvas-container:hover {
@@ -108,7 +105,7 @@ canvas {
   height: 300px;
 }
 
-/* 컨트롤 섹션 */
+
 .controls {
   width: 90vw;
   max-width: 700px;
@@ -174,7 +171,7 @@ button:hover {
   background: #FE818D;
   transform: translateY(-3px);
   box-shadow: 0 6px 15px rgba(254, 129, 141, 0.3);
-  animation: pulse 0.5s infinite; /* 펄스 애니메이션 추가 */
+  animation: pulse 0.5s infinite; 
 }
 
 select {
@@ -229,7 +226,6 @@ input {
   gap: 1vh;
 }
 
-/* 스마트폰 가로 화면 최적화 */
 @media only screen and (orientation: landscape) and (max-width: 900px) {
   main {
     flex-direction: column;
@@ -377,7 +373,7 @@ footer p {
   margin: 0;
 }
 
-/* 애니메이션 정의 */
+
 @keyframes pulse {
   0% { transform: scale(1); }
   50% { transform: scale(1.05); }

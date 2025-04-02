@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>바운더리엑스 AI 모델학습</title>
+  
+  <!-- p5.js 라이브러리 -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/addons/p5.dom.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/addons/p5.sound.min.js"></script>
+  
+  <!-- ml5.js 라이브러리 -->
+  <script src="https://unpkg.com/ml5@0.5.0/dist/ml5.min.js"></script>
+  
+  <!-- Pretendard 웹 폰트 적용 -->
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css" />
+  
+  <!-- CSS 파일 -->
+  <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body>
+  <!-- 헤더 -->
+  <header>
+    <div class="title">
+      <img src="https://cdn.imweb.me/thumbnail/20250313/3f19e53e96d2a.png" alt="Logo">
+      AI 모델학습
+    </div>
+    <a href="#" class="back-button">돌아가기</a>
+  </header>
+
+  <!-- 메인 컨텐츠 -->
+  <main>
+    <div id="p5-container" class="canvas-container"></div>
+    <section class="controls">
+      <div class="control-group">
+        <h3>📷 카메라 설정</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        <div id="camera-control-buttons" class="button-group"></div>
+      </div>
+      <div class="control-group">
+        <h3>📡 블루투스 연결</h3>
+        <p>Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        <div id="bluetoothStatus" class="status">상태: Disconnected</div>
+        <div id="bluetooth-control-buttons" class="button-group"></div>
+      </div>
+      <div class="control-group">
+        <h3>🤖 모델 로드</h3>
+        <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
+        <div id="model-select-and-link" class="model-selection"></div>
+        <div id="model-key-container" class="model-key"></div>
+        <div id="model-action-buttons" class="button-group"></div>
+      </div>
+    </section>
+  </main>
+
+  <!-- 푸터 -->
+  <footer>
+    <p>ⓒ 2024. boundary X Co. All rights reserved.</p>
+  </footer>
+
+  <!-- sketch.js 연결 -->
+  <script src="sketch.js"></script>
+  <script>
+    document.querySelector('.back-button').addEventListener('click', () => {
+      window.history.back();
+    });
+  </script>
+</body>
+</html>

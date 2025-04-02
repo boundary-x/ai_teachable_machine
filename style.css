@@ -1,0 +1,390 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Pretendard', sans-serif;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #E6F0FA 0%, #FDF6E3 100%);
+  overflow-x: hidden;
+  color: #2c3e50;
+  position: relative;
+}
+
+/* 배경에 흐릿한 AI 느낌의 원 패턴 추가 */
+body::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="100" height="100" opacity="0.05"%3E%3Ccircle cx="50" cy="50" r="40" fill="none" stroke="%2378B3FF" stroke-width="2"/%3E%3C/svg%3E');
+  z-index: -1;
+}
+
+/* 헤더 스타일 */
+header {
+  width: 100%;
+  padding: 1rem 2vw;
+  background: linear-gradient(90deg, #FE818D, #78B3FF);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.title {
+  font-size: clamp(1.2rem, 3vw, 1.8rem);
+  font-weight: 700;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.title img {
+  height: clamp(1.2rem, 3vw, 1.8rem);
+  width: auto;
+}
+
+.back-button {
+  padding: clamp(0.5rem, 1vw, 0.7rem) clamp(1rem, 2vw, 1.5rem);
+  background: #ffffff;
+  color: #FE818D;
+  border-radius: 10px;
+  text-decoration: none;
+  font-size: clamp(0.8rem, 2vw, 1rem);
+  font-weight: 500;
+  transition: all 0.3s ease;
+  border: 2px solid #FE818D;
+}
+
+.back-button:hover {
+  background: #78B3FF;
+  color: #ffffff;
+  border-color: #78B3FF;
+  transform: translateY(-2px);
+  animation: pulse 0.5s infinite; /* 펄스 애니메이션 추가 */
+}
+
+/* 메인 컨텐츠 */
+main {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2.5vw;
+  gap: 3vh;
+}
+
+.canvas-container {
+  width: 400px;
+  height: 300px;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  background: #ffffff;
+  transition: box-shadow 0.3s ease, opacity 0.5s ease; /* 페이드 인을 위한 트랜지션 */
+  opacity: 0; /* 처음엔 투명 */
+  animation: fadeIn 1s forwards; /* 로드 시 페이드 인 */
+}
+
+.canvas-container:hover {
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+canvas {
+  display: block;
+  width: 400px;
+  height: 300px;
+}
+
+/* 컨트롤 섹션 */
+.controls {
+  width: 90vw;
+  max-width: 700px;
+  display: flex;
+  flex-direction: column;
+  gap: 3vh;
+}
+
+.control-group {
+  background: #ffffff;
+  padding: 2rem;
+  border-radius: 20px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease;
+}
+
+.control-group:hover {
+  transform: translateY(-5px);
+}
+
+.control-group h3 {
+  font-size: 1.4rem;
+  margin-bottom: 0.5rem;
+  color: #FE818D;
+  font-weight: 600;
+  text-align: center;
+}
+
+.control-group p {
+  font-size: 0.9rem;
+  color: #7f8c8d;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  line-height: 1.4;
+}
+
+.button-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5vw;
+  justify-content: center;
+}
+
+button, select, input {
+  padding: 1rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  outline: none;
+}
+
+button {
+  background: #78B3FF;
+  color: #ffffff;
+  width: 45%;
+  cursor: pointer;
+  font-weight: 500;
+  box-shadow: 0 4px 10px rgba(120, 179, 255, 0.2);
+}
+
+button:hover {
+  background: #FE818D;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 15px rgba(254, 129, 141, 0.3);
+  animation: pulse 0.5s infinite; /* 펄스 애니메이션 추가 */
+}
+
+select {
+  width: 100%;
+  background: #ecf0f1;
+  color: #2c3e50;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%232c3e50' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  padding-right: 2.5rem;
+}
+
+input {
+  width: 100%;
+  background: #ecf0f1;
+  border: 1px solid #ddd;
+  color: #2c3e50;
+}
+
+.status {
+  padding: 1rem;
+  font-size: 1rem;
+  text-align: center;
+  border-radius: 12px;
+  font-weight: 600;
+  background: #f9f9f9;
+  color: #FE818D;
+}
+
+.model-selection {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5vh;
+}
+
+.model-selection a {
+  color: #78B3FF;
+  text-decoration: none;
+  font-size: 1rem;
+  text-align: center;
+  transition: color 0.3s ease;
+}
+
+.model-selection a:hover {
+  color: #FE818D;
+}
+
+.model-key {
+  display: flex;
+  flex-direction: column;
+  gap: 1vh;
+}
+
+/* 스마트폰 가로 화면 최적화 */
+@media only screen and (orientation: landscape) and (max-width: 900px) {
+  main {
+    flex-direction: column;
+    padding: 1.5vw;
+  }
+
+  .canvas-container {
+    width: 400px;
+    height: 300px;
+  }
+
+  .controls {
+    width: 90vw;
+    max-width: 700px;
+  }
+
+  .control-group {
+    padding: 1.5rem;
+  }
+
+  button {
+    width: 45%;
+    padding: 0.8rem;
+    font-size: 0.9rem;
+  }
+
+  .model-selection, .model-key {
+    flex-direction: column;
+  }
+
+  header {
+    padding: 0.8rem 1.5vw;
+  }
+
+  .title {
+    font-size: clamp(1rem, 2.5vw, 1.5rem);
+  }
+
+  .title img {
+    height: clamp(1rem, 2.5vw, 1.5rem);
+  }
+
+  .back-button {
+    padding: clamp(0.4rem, 0.8vw, 0.6rem) clamp(0.8rem, 1.5vw, 1.2rem);
+    font-size: clamp(0.7rem, 1.5vw, 0.9rem);
+  }
+}
+
+/* 세로 화면 최적화 */
+@media only screen and (max-width: 600px) and (orientation: portrait) {
+  main {
+    flex-direction: column;
+  }
+
+  .canvas-container {
+    width: 400px;
+    height: 300px;
+  }
+
+  .controls {
+    width: 90vw;
+  }
+
+  button {
+    width: 100%;
+  }
+
+  .control-group h3 {
+    font-size: 1.2rem;
+  }
+
+  header {
+    padding: 0.5rem 2vw;
+  }
+
+  .title {
+    font-size: clamp(1rem, 3.5vw, 1.4rem);
+  }
+
+  .title img {
+    height: clamp(1rem, 3.5vw, 1.4rem);
+  }
+
+  .back-button {
+    padding: clamp(0.4rem, 1vw, 0.6rem) clamp(0.8rem, 2vw, 1.2rem);
+    font-size: clamp(0.7rem, 2vw, 0.9rem);
+  }
+}
+
+/* PC 와이드 화면 최적화 */
+@media only screen and (min-width: 901px) {
+  main {
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .canvas-container {
+    width: 400px;
+    height: 300px;
+  }
+
+  .controls {
+    width: 50vw;
+    max-height: 70vh;
+    overflow-y: auto;
+  }
+
+  button {
+    width: 30%;
+  }
+
+  header {
+    padding: 1.5rem 2vw;
+  }
+
+  .title {
+    font-size: clamp(1.4rem, 2vw, 1.8rem);
+  }
+
+  .title img {
+    height: clamp(1.4rem, 2vw, 1.8rem);
+  }
+
+  .back-button {
+    padding: clamp(0.6rem, 0.8vw, 0.7rem) clamp(1.2rem, 1.5vw, 1.5rem);
+    font-size: clamp(0.9rem, 1.2vw, 1rem);
+  }
+}
+
+/* 푸터 스타일 */
+footer {
+  width: 100%;
+  padding: 1rem 2vw;
+  background: #ffffff;
+  text-align: center;
+  color: #7f8c8d;
+  font-size: 0.9rem;
+  margin-top: auto;
+}
+
+footer p {
+  margin: 0;
+}
+
+/* 애니메이션 정의 */
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}

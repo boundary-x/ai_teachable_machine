@@ -18,7 +18,7 @@ let isClassifying = false;
 // Camera control variables
 let isFlipped = false;
 let facingMode = "user";
-let isVideoLoaded = false; // 비디오 로드 여부 확인
+let isVideoLoaded = false; 
 
 // UI elements
 let modelInput, modelSelect, initializeModelButton, stopClassifyButton;
@@ -33,7 +33,6 @@ const modelList = {
 let isSendingData = false;
 
 function setup() {
-  // 고정된 캔버스 크기 설정 (400x300)
   let canvas = createCanvas(400, 300);
   canvas.parent('p5-container');
   canvas.style('border-radius', '20px');
@@ -43,27 +42,23 @@ function setup() {
 
   // Create UI
   createUI();
-  
-  // 윈도우 리사이즈 이벤트 제거 (고정 크기이므로 필요 없음)
-  // window.addEventListener('resize', resizeCanvasToFit); <- 주석 처리
 }
 
 function setupCamera() {
   video = createCapture({
     video: {
       facingMode: facingMode,
-      width: 400,  // 고정 폭
-      height: 300 // 고정 높이
+      width: 400,  
+      height: 300 
     }
   });
   video.elt.onloadeddata = function() {
     isVideoLoaded = true;
-    resizeCanvasToFit(); // 비디오 로드 후 캔버스와 비디오 크기 맞춤
+    resizeCanvasToFit(); 
   };
-  video.size(400, 300); // 비디오 크기 고정
+  video.size(400, 300); 
   video.hide();
 
-  // 비디오 로드가 지연될 경우를 대비해 주기적으로 확인
   let videoLoadCheck = setInterval(() => {
     if (isVideoLoaded) {
       clearInterval(videoLoadCheck);
@@ -77,7 +72,6 @@ function setupCamera() {
   }, 100);
 }
 
-// UI 생성 함수는 변경 없음
 function createUI() {
   // Camera control buttons
   flipButton = createButton("↔️ 카메라 좌우 반전");
@@ -168,7 +162,6 @@ function createUI() {
   stopClassifyButton.style('cursor', 'pointer');
   stopClassifyButton.mousePressed(stopClassification);
 
-  // 초기 블루투스 상태 업데이트
   updateBluetoothStatus();
 }
 
@@ -179,7 +172,7 @@ function toggleFlip() {
 function switchCamera() {
   facingMode = facingMode === "user" ? "environment" : "user";
   video.remove();
-  isVideoLoaded = false; // 비디오 로드 상태 초기화
+  isVideoLoaded = false; 
   setupCamera();
 }
 
@@ -329,7 +322,6 @@ function gotResults(error, results) {
 function draw() {
   background(220);
   
-  // 비디오가 로드되지 않았으면 로딩 메시지 표시
   if (!isVideoLoaded) {
     textAlign(CENTER, CENTER);
     textSize(24);
@@ -348,7 +340,6 @@ function draw() {
     image(video, 0, 0, width, height);
   }
 
-  // Label 박스
   const boxWidth = width * 0.8;
   const boxHeight = height * 0.18;
   const boxX = (width - boxWidth) / 2;
@@ -362,7 +353,6 @@ function draw() {
   text(label, width / 2, height / 2);
 }
 
-// 캔버스 크기 고정
 function resizeCanvasToFit() {
   resizeCanvas(400, 300);
   video.size(400, 300);

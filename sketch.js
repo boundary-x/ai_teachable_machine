@@ -27,7 +27,7 @@ let flipButton, switchCameraButton, connectBluetoothButton, disconnectBluetoothB
 const modelList = {
   "✌🏻✊🏻🖐🏻 가위 바위 보 분류": "vOi4Y0yiK",
   "🚗 속도 표지판 분류": "cTrp8ZF93",
-  "⬅️➡️ 방향 표지판 분류": "vnR_WnN1X"
+  "⬅️➡️ 방향 표지판 분류": "JX0oMMrn3"
 };
 
 let isSendingData = false;

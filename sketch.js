@@ -27,7 +27,8 @@ let flipButton, switchCameraButton, connectBluetoothButton, disconnectBluetoothB
 const modelList = {
   "✌🏻✊🏻🖐🏻 가위 바위 보 분류": "vOi4Y0yiK",
   "🚗 속도 표지판 분류": "cTrp8ZF93",
-  "⬅️➡️ 방향 표지판 분류": "JX0oMMrn3"
+  "⬅️➡️ 방향 표지판 분류": "JX0oMMrn3",
+  "🧭 화살표 분류":"3-GgGCOIR" 
 };
 
 let isSendingData = false;
@@ -357,3 +358,4 @@ function resizeCanvasToFit() {
   resizeCanvas(400, 300);
   video.size(400, 300);
 }
+
